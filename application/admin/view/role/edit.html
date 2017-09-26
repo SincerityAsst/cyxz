@@ -1,0 +1,121 @@
+{extend name="public:base"/}
+{block name="main"}
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-6">
+        <h2>编辑角色</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="{:url('index/index')}">控制台</a>
+            </li>
+            <li>
+                <a>系统管理</a>
+            </li>
+            <li>
+                <a href="{:url('index')}">角色列表</a>
+            </li>
+            <li class="active">
+                <strong>编辑角色</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+
+            <!-- 标题 -->
+            <div class="ibox-title">
+                <h5>编辑角色</h5>            
+                <div class="ibox-tools">                    
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>             
+                </div>
+            </div>
+
+            <!-- 内容 -->
+            <div class="ibox-content">                
+
+                <form class="form-horizontal" method="post" action="{:url('update')}">
+                                        
+                    <input type="hidden" name="id" value="{$info.id}">
+
+                    <div class="form-group"><label class="col-sm-2 control-label">名称</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="name" placeholder="名称" value="{$info.name}">
+                        </div>
+                    </div>        
+                    
+                    <div class="form-group"><label class="col-sm-2 control-label">描述</label>
+                        <div class="col-sm-10">
+                            <textarea name="description" id="description" rows="3" class="form-control" placeholder="描述">{$info.description}</textarea>                            
+                        </div>
+                    </div>   
+
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">权 限</label>
+
+                        <div class="col-md-10">
+                            <div class="table-scrollable">
+                                <table class="table table-bordered table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th class="col-md-2 text-center">模块</th>
+                                        <th class="col-md-10 text-center">权限</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {if !empty($permissions)}
+                                    {foreach $permissions as $item}
+                                    <tr>
+                                        <td class="text-center" style="vertical-align: middle;"> {$item.name}
+                                        </td>
+                                        <td>
+                                            {if !empty($item.child)}
+                                            {foreach $item.child as $key => $val}
+                                            <div class="col-md-4">
+                                                <div class="md-checkbox">
+                                                    <input type="checkbox" name="permission_ids[]"
+                                                           id="id{$val.id}" value="{$val.id}" {if
+                                                           in_array($val.id,$list)}checked{/if}
+                                                    class="md-check">
+                                                    <label for="id{$val.id}" class="tooltips"
+                                                           data-placement="top">
+                                                        <span></span>
+                                                        <span class="check"></span>
+                                                        <span class="box"></span>{$val.name}</label>
+                                                </div>
+                                            </div>
+                                            {/foreach}
+                                            {/if}
+                                        </td>
+                                    </tr>
+                                    {/foreach}
+                                    {/if}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hr-line-dashed"></div>
+
+                    <div class="form-group">
+                        <div class="col-sm-4 col-sm-offset-4">
+                            <button class="btn btn-white btn-w-m" type="submit" onclick="javascript:history.go(-1);">返回</button>
+                            <button class="btn btn-primary btn-w-m" type="submit">保存</button>
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+
+{/block}

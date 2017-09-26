@@ -1,0 +1,145 @@
+{extend name="public:base"/}
+{block name="main"}
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-6">
+        <h2>编辑快递</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="{:url('index/index')}">控制台</a>
+            </li>
+            <li>
+                <a>快递管理</a>
+            </li>
+            <li>
+                <a href="{:url('index')}">代取列表</a>
+            </li>
+            <li class="active">
+                <strong>编辑代取</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+
+            <!-- 标题 -->
+            <div class="ibox-title">
+                <h5>编辑代取</h5>
+                <div class="ibox-tools">                    
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>             
+                </div>
+            </div>
+
+            <!-- 内容 -->
+            <div class="ibox-content">                
+
+                <form class="form-horizontal" method="post" action="{:url('update')}">
+                                        
+                    <input type="hidden" name="id" value="{$info.id}">         
+
+                    <div class="form-group"><label class="col-sm-2 control-label">用户</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" value="{$info.user.nickname}" disabled="disabled">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">代取用户</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" placeholder="代取用户" value="{notempty name="info.take_user_id"}{$info.takeUser.nickname}{else/}无{/notempty}
+                            " disabled="disabled">
+                        </div>
+                        <label class="col-sm-2 control-label">代取状态</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" placeholder="代取状态" value="{eq name="info.status" value="0"}未取{else/}已取{/eq}" disabled="disabled">
+                        </div>
+                    </div>
+
+                    <div class="hr-line-dashed"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">收件人</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="receiver_name" placeholder="收件人" value="{$info.receiver_name}">
+                        </div>
+                        <label class="col-sm-2 control-label">手机号</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="receiver_phone" placeholder="手机号" value="{$info.receiver_phone}">
+                        </div>
+                    </div>
+
+                    <div class="form-group"><label class="col-sm-2 control-label">收件地址</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="receiver_address" value="{$info.receiver_address}">
+                        </div>
+                    </div>
+
+                    <div class="hr-line-dashed"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">快递名称</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="express_name" placeholder="快递名称" value="{$info.express_name}">
+                        </div>
+                        <label class="col-sm-2 control-label">取货码</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="take_code" placeholder="取货码" value="{$info.take_code}">
+                        </div>
+                    </div>
+
+                    <div class="form-group"><label class="col-sm-2 control-label">配送时间</label>
+
+                        <div class="col-sm-10"><select class="form-control m-b" name="take_time">
+                            <option value="0" {eq name="info.take_time" value="0"}selected{/eq} >09:00~22:30</option>
+                            <option value="1" {eq name="info.take_time" value="1"}selected{/eq} >09:00~13:30</option>
+                            <option value="2" {eq name="info.take_time" value="2"}selected{/eq}>17:30~22:30</option>
+                        </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group"><label class="col-sm-2 control-label">预估重量</label>
+                        <div class="col-sm-10">       
+                            <input type="radio" name="weight_type" value="0" {eq name="info.weight_type" value="0"}checked{/eq}> 3斤以下 &nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="radio" name="weight_type" value="1" {eq name="info.weight_type" value="1"}checked{/eq}> 3-10斤 &nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="radio" name="weight_type" value="2" {eq name="info.weight_type" value="2"}checked{/eq}> 10斤以上                  
+                        </div>
+                    </div>
+
+                    <div class="form-group"><label class="col-sm-2 control-label">跑腿小费</label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" name="reward" value="{$info.reward}">
+                        </div>
+                    </div>
+
+                    <div class="hr-line-dashed"></div>                    
+
+                    <div class="form-group"><label class="col-sm-2 control-label">创建时间</label>
+                        <div class="col-sm-10">
+                            <input type="text" disabled class="form-control" placeholder="创建时间" value="{$info.created_at}">
+                        </div>
+                    </div>
+
+                    <div class="hr-line-dashed"></div>                    
+
+                    <div class="form-group">
+                        <div class="col-sm-4 col-sm-offset-4">
+                            <button class="btn btn-white btn-w-m" type="submit" onclick="javascript:history.go(-1);">返回</button>
+                            <button class="btn btn-primary btn-w-m" type="submit">保存</button>
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+
+{/block}

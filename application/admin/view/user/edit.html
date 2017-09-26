@@ -1,0 +1,81 @@
+{extend name="public:base"/}
+{block name="main"}
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-6">
+        <h2>编辑用户</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="{:url('index/index')}">控制台</a>
+            </li>
+            <li>
+                <a>用户管理</a>
+            </li>
+            <li>
+                <a href="{:url('index')}">用户列表</a>
+            </li>
+            <li class="active">
+                <strong>编辑用户</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+
+            <!-- 标题 -->
+            <div class="ibox-title">
+                <h5>编辑用户</h5>            
+                <div class="ibox-tools">                    
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>             
+                </div>
+            </div>
+
+            <!-- 内容 -->
+            <div class="ibox-content">                
+
+                <form class="form-horizontal" method="post" action="{:url('update')}">
+                                        
+                    <input type="hidden" name="id" value="{$info.id}">    
+
+                    <div class="form-group"><label class="col-sm-2 control-label">头像</label>
+                        <div class="col-sm-10">
+                            <img style="width:200px;height:200px;" src="{$info.avatar}">
+                        </div>
+                    </div>
+
+                    <div class="form-group"><label class="col-sm-2 control-label">openid</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="openid" placeholder="openid" value="{$info.openid}" disabled="disabled">
+                        </div>
+                    </div> 
+
+                    <div class="form-group"><label class="col-sm-2 control-label">昵称</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="nickname" placeholder="昵称" value="{$info.nickname}">
+                        </div>
+                    </div>       
+
+                    <div class="hr-line-dashed"></div>
+
+                    <div class="form-group">
+                        <div class="col-sm-4 col-sm-offset-4">
+                            <button class="btn btn-white btn-w-m" type="submit" onclick="javascript:history.go(-1);">返回</button>
+                            <button class="btn btn-primary btn-w-m" type="submit">保存</button>
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+
+{/block}

@@ -1,0 +1,103 @@
+{extend name="public:base"/}
+{block name="main"}
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <a href="{:url('index/index')}"><i class="fa fa-home"></i> 主页</a>
+            <i class="fa fa-angle-right"></i>
+        </li>
+        <li>
+            <a href="{:url('index')}"><i class="fa fa-navicon"></i> 用户列表</a>
+            <i class="fa fa-angle-right"></i>
+        </li>
+        <li>
+            <span>修改密码</span>
+        </li>
+    </ul>
+</div>
+<div class="row margin-top-40">
+    <div class="col-md-12">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-green-haze">
+                    <i class="icon-settings font-green-haze"></i>
+                    <span class="caption-subject bold uppercase">修改密码</span>
+                </div>
+                <div class="actions">
+                    <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="javascript:;"
+                       data-original-title="" title=""> </a>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <div class="portlet-body form">
+                    <form role="form" class="form-horizontal" id="edit-form"
+                          action="{:url('updatePassword')}">
+                        <div class="form-group form-md-line-input col-md-12">
+                            <label class="col-md-2 control-label"
+                                   for="password"><span class="font-red fc-center">*</span> 新密码</label>
+
+                            <div class="col-md-9">
+                                <input type="password" class="form-control" id="password" name="password"
+                                       placeholder="新密码" required>
+
+                                <div class="form-control-focus"></div>
+                            </div>
+                        </div>
+                        <div class="form-group form-md-line-input col-md-12">
+                            <label class="col-md-2 control-label"
+                                   for="confirm_password"><span class="font-red fc-center">*</span> 确认新密码</label>
+
+                            <div class="col-md-9">
+                                <input type="password" class="form-control" id="confirm_password"
+                                       name="confirm_password"
+                                       placeholder="确认新密码" required>
+
+                                <div class="form-control-focus"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <div class="row">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <button type="button" onclick="javascript:history.go(-1);"
+                                            class="btn default">返回
+                                    </button>
+                                    <button type="button" class="btn blue" id="ajax-edit">保存</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
+{block name="js"}
+<script>
+    function validateVal() {
+        var password = $("#password").val();
+        var confirm_password = $("#confirm_password").val();
+
+        if ($.trim(password).length == 0) {
+            swal({title: "", text: "请输入新密码", type: 'error', showConfirmButton: false, timer: 1000});
+            return false;
+        }
+        if ($.trim(password).length < 6) {
+            swal({title: "", text: "密码至少6位", type: 'error', showConfirmButton: false, timer: 1000});
+            return false;
+        }
+        if ($.trim(confirm_password).length == 0) {
+            swal({title: "", text: "请输入确认新密码", type: 'error', showConfirmButton: false, timer: 1000});
+            return false;
+        }
+
+        if (password != confirm_password) {
+            swal({title: "", text: "密码不一致", type: 'error', showConfirmButton: false, timer: 1000});
+            return false;
+        }
+
+        return true;
+    }
+</script>
+{/block}

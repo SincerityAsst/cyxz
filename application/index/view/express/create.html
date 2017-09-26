@@ -1,0 +1,71 @@
+{extend name="common:base"/}
+
+{block name="title"}我要寄件{/block}
+
+{block name="css"}
+    
+{/block}
+
+{block name="main"}
+
+    <header>
+        <a href="javascript:history.back(-1)"><i class="fa fa-angle-left"></i></a>
+        <span>我要寄件</span>
+    </header>
+    <form class="g-send-form" action="" method="post">
+        <div class="form-group">
+            <input id="send_addr" type="text" name='' placeholder="添加寄件人地址">
+            <label for="send_addr">寄</label>
+            <i class="fa fa-user-o"></i>
+        </div>
+        <div class="form-group">
+            <input id="receive_addr" type="text" name='' placeholder="添加收件人地址">
+            <label for="receive_addr">收</label>
+            <i class="fa fa-user-o"></i>
+        </div>
+        <div class="form-group">
+            <input class="nti" id="goods" type="text" name='' placeholder="托寄物品">
+        </div>
+        <div class="form-group g-weight">
+            <p>预估重量：</p>
+            <div class="weight-content">
+                <input id="w1" type="radio" name='weight' checked>
+                <label for="w1">3公斤以下</label>
+                <input id="w2" type="radio" name='weight'>
+                <label for="w2">3~10公斤</label>
+                <input id="w3" type="radio" name='weight'>
+                <label for="w3">超10公斤</label>
+            </div>
+        </div>
+        <div class="form-group g-intro">
+            <p class="intro">亲，感谢您对小助的信任，提交订单表示您愿意支付小助的跑腿费！</p>
+            <label for="agree"><input id="agree" type="checkbox">我同意《国内快递服务协议》 
+            </label>
+        </div>
+        <div class="form-group g-submit">
+            <input id="submit" class="ban" type="submit" value="立即下单">
+        </div>
+    </form>
+    <section id="msg"></section>
+    
+{/block}
+
+{block name="js"}  
+
+    <script>
+        function showMsg(str) {
+            $('#msg').text(str).fadeToggle().delay(1000).fadeToggle();
+            return false;
+        }
+        $('#agree').change(function () {
+            $('#submit').toggleClass('ban');
+        })
+        $('#submit').on('click', function () {
+            if ($(this).hasClass('ban')) return false;
+            if ($('#send_addr').val().length === 0) return showMsg('请选择寄件人地址！');
+            if ($('#receive_addr').val().length === 0) return showMsg('请选择收件人地址！');
+            if ($('#goods').val().length === 0) return showMsg('请选择寄托物品！');
+        });
+    </script>
+
+{/block} 

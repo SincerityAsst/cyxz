@@ -1,0 +1,127 @@
+{extend name="public:base"/}
+{block name="main"}
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-6">
+        <h2>编辑快递</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="{:url('index/index')}">控制台</a>
+            </li>
+            <li>
+                <a>快递管理</a>
+            </li>
+            <li>
+                <a href="{:url('index')}">寄件列表</a>
+            </li>
+            <li class="active">
+                <strong>编辑快递</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+
+            <!-- 标题 -->
+            <div class="ibox-title">
+                <h5>编辑快递</h5>            
+                <div class="ibox-tools">                    
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>             
+                </div>
+            </div>
+
+            <!-- 内容 -->
+            <div class="ibox-content">                
+
+                <form class="form-horizontal" method="post" action="{:url('update')}">
+                                        
+                    <input type="hidden" name="id" value="{$info.id}">         
+
+                    <div class="form-group"><label class="col-sm-2 control-label">用户</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" value="{$info.user.nickname}" disabled="disabled">
+                        </div>
+                    </div> 
+
+                    <div class="form-group"><label class="col-sm-2 control-label">物品名称</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="goods_name" placeholder="物品名称" value="{$info.goods_name}">
+                        </div>
+                    </div>
+
+                    <div class="form-group"><label class="col-sm-2 control-label">重量</label>
+                        <div class="col-sm-10">       
+                            <input type="radio" name="weight_type" value="0" {eq name="info.weight_type" value="0"}checked{/eq}>3斤以下 &nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="radio" name="weight_type" value="1" {eq name="info.weight_type" value="1"}checked{/eq}>3-10斤 &nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="radio" name="weight_type" value="2" {eq name="info.weight_type" value="2"}checked{/eq}>10斤以上                  
+                        </div>
+                    </div>
+
+                    <div class="form-group"><label class="col-sm-2 control-label">创建时间</label>
+                        <div class="col-sm-10">
+                            <input type="text" disabled class="form-control" placeholder="创建时间" value="{$info.created_at}">
+                        </div>
+                    </div>
+
+                    <div class="hr-line-dashed"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">寄件人</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="sender_name" placeholder="寄件人" value="{$info.sender_name}">
+                        </div>
+                        <label class="col-sm-2 control-label">寄件人电话</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="sender_phone" placeholder="寄件人电话" value="{$info.sender_phone}">
+                        </div>
+                    </div>          
+
+                    <div class="form-group"><label class="col-sm-2 control-label">寄件人地址</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="sender_address" placeholder="寄件地址" value="{$info.sender_address}">
+                        </div>
+                    </div>
+
+                    <div class="hr-line-dashed"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">收件人</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="receiver_name" placeholder="收件人" value="{$info.receiver_name}">
+                        </div>
+                        <label class="col-sm-2 control-label">收件人电话</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="receiver_phone" placeholder="收件人电话" value="{$info.receiver_phone}">
+                        </div>
+                    </div>        
+
+                    <div class="form-group"><label class="col-sm-2 control-label">收件人地址</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="receiver_address" placeholder="收件人地址" value="{$info.receiver_address}">
+                        </div>
+                    </div>
+
+                    <div class="hr-line-dashed"></div>
+
+                    <div class="form-group">
+                        <div class="col-sm-4 col-sm-offset-4">
+                            <button class="btn btn-white btn-w-m" type="submit" onclick="javascript:history.go(-1);">返回</button>
+                            <button class="btn btn-primary btn-w-m" type="submit">保存</button>
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+
+{/block}
