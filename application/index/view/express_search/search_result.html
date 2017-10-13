@@ -1,0 +1,56 @@
+{extend name="common:base"/}
+
+{block name="title"}我要查件{/block}
+
+{block name="css"}
+    
+{/block}
+
+{block name="main"}
+<header>
+    <span>快递服务</span>
+</header>
+<section class="g-search g-search2">
+    <form action="">
+        <p class="tit">运单号查询</p>
+        <div class="input"><input type="text" placeholder="请输入快递单号" required>
+            <svg class="lnr lnr-camera">
+                <use xlink:href="#lnr-camera"></use>
+            </svg>
+        </div>
+        <input class="submit" type="submit" value="查询">
+    </form>
+
+</section>
+<section class="g-list">
+    <p class="tit">物流信息</p>
+    <ul>
+        <li>
+            <svg class="lnr lnr-checkmark-circle">
+                <use xlink:href="#lnr-checkmark-circle"></use>
+            </svg>
+            <div class="detail">
+                <p>物流信息厦门思明区&#45;&#45;&#45;&#45;&#45;&#45;已签收</p>
+                <p>感谢您的支持！</p>
+                <p>2017-7-18 15:30</p>
+            </div>
+        </li>
+        <li>
+            <svg class="lnr lnr-checkmark-circle">
+                <use xlink:href="#lnr-checkmark-circle"></use>
+            </svg>
+            <div class="detail">
+                <p>物流信息厦门思明区&#45;&#45;&#45;&#45;&#45;&#45;已签收</p>
+                <p>感谢您的支持！</p>
+                <p>2017-7-18 15:30</p>
+            </div>
+        </li>
+    </ul>
+    <!--<div class="no-data">未查到物流信息</div>-->
+</section>
+
+{/block}
+
+{block name="js"}    
+  
+{/block}

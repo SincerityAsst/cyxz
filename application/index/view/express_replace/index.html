@@ -1,0 +1,90 @@
+{extend name="common:base"/}
+
+{block name="title"}请人代取{/block}
+
+{block name="css"}
+    
+{/block}
+
+{block name="main"}
+
+	<header>
+        <span>请人代取</span>
+    </header>
+    <form action="">
+        <table class="g-qrdq">
+            <tr>
+                <td rowspan="2">
+                    <p class="qu">取</p>
+                </td>
+                <td><input type="text" placeholder="请填快递单上的姓名"><span class="sprite"></span></td>
+                <td><input type="text" placeholder="请填快递单上的号码"></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="text" placeholder="请输入您的详细收件地址"></td>
+            </tr>
+            <tr>
+                <td>快递信息</td>
+                <td><input type="text" placeholder="快递名称"><span class="sprite"></span></td>
+                <td><input type="text" placeholder="取货码/密码"></td>
+            </tr>
+            <tr>
+                <td>派送时间</td>
+                <td colspan="2"><input type="date" placeholder="09~12:30"></td>
+            </tr>
+            <tr>
+                <td colspan="3">预估重量</td>
+            </tr>
+            <tr>
+                <td colspan="3" class="g-weight">
+                    <div class="weight-content">
+                        <input id="w1" type="radio" name="weight" checked="">
+                        <label for="w1">3公斤以下</label>
+                        <input id="w2" type="radio" name="weight">
+                        <label for="w2">3~10公斤</label>
+                        <input id="w3" type="radio" name="weight">
+                        <label for="w3">超10公斤</label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">跑腿小费</td>
+            </tr>
+            <tr>
+                <td colspan="3" class="g-weight g-tips">
+                    <div class="weight-content">
+                        <input id="p1" type="radio" name="tips" checked="">
+                        <label for="p1">2元</label>
+                        <input id="p2" type="radio" name="tips">
+                        <label for="p2">5元</label>
+                        <input id="p3" type="radio" name="tips">
+                        <label for="p3">10元</label>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <div class="form-group g-submit">
+            <input id="submit" class="ban" type="submit" value="立即支付">
+        </div>
+    </form>
+    <section class="g-wechat-pay clearfix">
+        <div class="icon"><i class="fa fa-weixin"></i>微信支付</div>
+        <input id="wx_pay" type="checkbox" checked>
+        <label for="wx_pay"><i class="fa fa-check-circle-o"></i></label>
+    </section>
+
+{/block}
+
+{block name="js"}    
+    <script>
+        $('#wx_pay').change(function () {
+            $('#submit').toggleClass('ban');
+        });
+        $('#submit').on('click', function () {
+            if ($(this).hasClass('ban')) return false;
+            if ($('#send_addr').val().length === 0) return showMsg('请选择寄件人地址！');
+            if ($('#receive_addr').val().length === 0) return showMsg('请选择收件人地址！');
+            if ($('#goods').val().length === 0) return showMsg('请选择寄托物品！');
+        });
+    </script>
+{/block}
